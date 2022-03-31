@@ -23,11 +23,11 @@ contract Ballot {
     mapping(address => Voter) public voters;
     Candidate[] public candidates;
 
-    constructor(bytes32[] memory proposalNames) {
+    constructor(bytes32[] memory candidateNames) {
         chairperson = msg.sender;
         voters[chairperson].voteRightCount = 1;
-        for (uint256 i = 0; i < proposalNames.length; i++) {
-            candidates.push(Candidate({name: proposalNames[i], voteCount: 0}));
+        for (uint256 i = 0; i < candidateNames.length; i++) {
+            candidates.push(Candidate({name: candidateNames[i], voteCount: 0}));
         }
     }
 
