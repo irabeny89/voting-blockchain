@@ -15,7 +15,7 @@ contract Ballot {
     }
     struct Candidate {
         // short name (up to 32 bytes)
-        bytes32 name;
+        string name;
         // number of accumulated votes
         uint256 voteCount;
     }
@@ -23,7 +23,7 @@ contract Ballot {
     mapping(address => Voter) public voters;
     Candidate[] public candidates;
 
-    constructor(bytes32[] memory candidateNames) {
+    constructor(string[] memory candidateNames) {
         chairperson = msg.sender;
         voters[chairperson].voteRightCount = 1;
         for (uint256 i = 0; i < candidateNames.length; i++) {
@@ -81,7 +81,7 @@ contract Ballot {
         }
     }
 
-    function winnerName() external view returns (bytes32 winnerName_) {
+    function winnerName() external view returns (string memory winnerName_) {
         winnerName_ = candidates[winningCandidate()].name;
     }
 }
